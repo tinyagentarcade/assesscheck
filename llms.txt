@@ -8,6 +8,8 @@ Last updated: 2026-10-03. Counties covered: Harris TX, Dallas TX, Broward FL, Mi
 - [Methodology](https://assesscheck.pages.dev/methodology/): how comparable homes are chosen, the verdict labels, limits, and the accuracy checks performed (sample sizes and dates).
 - [Sources](https://assesscheck.pages.dev/sources/): the public datasets used and their as-of dates.
 
+- [How appeals work (TX and FL)](https://assesscheck.pages.dev/how-appeals-work/): general explainer.
+
 ## County pages
 - [Harris County, TX](https://assesscheck.pages.dev/tx/harris-county/property-tax-appeal/)
 - [Dallas County, TX](https://assesscheck.pages.dev/tx/dallas-county/property-tax-appeal/)
