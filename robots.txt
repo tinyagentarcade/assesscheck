@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://assesscheck.pages.dev/sitemap.xml

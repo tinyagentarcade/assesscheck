@@ -151,5 +151,6 @@ async function run(r){
  res.innerHTML=html;res.scrollIntoView({behavior:'smooth'});
 }
 
+{const cp=new URLSearchParams(location.search).get('c');if(cp&&CT[cp])sel.value=cp}
 if(location.hash.startsWith('#q=')){let h=decodeURIComponent(location.hash.slice(3));if(h.includes('|')){sel.value=h.split('|')[0];h=h.split('|')[1]}q.value=h;suggest().then(()=>{const f=sug.querySelector('li');if(f&&f.onclick)f.click()})}
 })();
