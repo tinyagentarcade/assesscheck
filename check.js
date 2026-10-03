@@ -20,6 +20,9 @@ async function suggest(){
  m.forEach(r=>{const li=document.createElement('li');li.innerHTML=title(r[0])+' <small>'+r[1]+'</small>';li.onclick=()=>{q.value=title(r[0]);sug.hidden=true;run(r)};sug.appendChild(li)});
  sug.hidden=false;
 }
+window.__gate=false; // flip to true only after /api/subscribe is live
+function gateForm(){if(!window.__gate)return '';return '<div class="card"><b>Optional: email me when deadlines are confirmed</b><p class="mut">We have not confirmed official appeal deadlines for your county yet and will not guess them. Enter your email and we will send one confirmation message, then tell you when dates are verified. Nothing else is sent. Unsubscribe anytime. No card, no payment.</p><input id="gateEmail" type="email" placeholder="you@example.com" autocomplete="email"><input id="gateHp" type="text" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"> <button onclick="window.__gateSend()">Email me</button> <span id="gateMsg" class="mut"></span></div>'}
+window.__gateSend=async function(){const m=document.getElementById('gateMsg');m.textContent='Sending...';try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:document.getElementById('gateEmail').value,county:sel.value,hp:document.getElementById('gateHp').value})});const j=await r.json();m.textContent=j.ok?'Check your inbox to confirm.':(j.error||'Something went wrong.')}catch(e){m.textContent='Something went wrong.'}};
 function pkBtn(){return window.__pk?'<div class="card"><button onclick="window.__mkPacket()">Get your free evidence packet</button><p class="mut">Opens a printable packet in a new tab. Nothing is stored or sent anywhere; use your browser Print / Save as PDF. You prepare, sign and file your own appeal.</p></div>':'<div class="card"><p class="mut">No evidence packet is available for this result because there is not enough comparison data.</p></div>'}
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 window.__mkPacket=function(){
@@ -107,7 +110,7 @@ function runFL(r,sh,me,C){
   html+='<div class="note">Your assessed value for county and city taxes ('+$(av)+') is below the just value ('+$(jv)+') because of '+(hs===1?'the Save Our Homes homestead limit':(hs===2?'the 10% limit on non-homestead residential property':'an assessment limitation'))+'. A lower just value only lowers your taxes if it falls below the assessed value. See <a href="https://floridarevenue.com/property/Documents/SaveOurHomes.pdf" rel="noopener">Florida DOR: Save Our Homes</a>.</div>';
  }
  html+='<p class="mut">Source: '+C.src+'. Parcel '+pid+'. Verify on the <a href="'+C.v+'" rel="noopener">'+C.vn+'</a>. This compares county records. It is not an appraisal. We do not file or represent you.</p>';
- html+=pkBtn();
+ html+=pkBtn()+gateForm();
  res.innerHTML=html;res.scrollIntoView({behavior:'smooth'});
 }
 async function run(r){
@@ -144,7 +147,7 @@ async function run(r){
  }
  if(asd&&asd<mkt)html+='<div class="note">Your appraised value ('+$(asd)+') is below the county market value ('+$(mkt)+'), which usually means a cap applies. A lower market value may not change your bill this year.</div>';
  html+='<p class="mut">Source: Harris Central Appraisal District roll, tax year 2026, data as of September 27, 2026. Account '+acct+'. Verify on <a href="'+C.v+'" rel="noopener">'+C.vn+'</a>. This compares county records. It is not an appraisal. We do not file or represent you.</p>';
- html+=pkBtn();
+ html+=pkBtn()+gateForm();
  res.innerHTML=html;res.scrollIntoView({behavior:'smooth'});
 }
 
