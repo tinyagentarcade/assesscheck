@@ -11,5 +11,6 @@
   "accounts flagged EXCLUDE_OWNER",
   "non A11 classes",
   "accounts without a street number"
- ]
+ ],
+ "shard_buckets": 64
 }

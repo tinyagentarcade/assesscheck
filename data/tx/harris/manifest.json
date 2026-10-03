@@ -11,5 +11,6 @@
   "parcels with all values pending",
   "non A1 classes",
   "accounts without a street address"
- ]
+ ],
+ "shard_buckets": 128
 }

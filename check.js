@@ -4,6 +4,7 @@ const FL=(n,v,vn)=>({st:'fl',n:n,cad:'property appraiser',src:n+' County Propert
 const CT={'tx/harris':{st:'tx',n:'Harris',cad:'HCAD',src:'Harris Central Appraisal District roll, tax year 2026, data as of September 27, 2026',v:'https://search.hcad.org/',vn:'HCAD property search'},'tx/dallas':{st:'tx',n:'Dallas',cad:'DCAD',src:'Dallas Central Appraisal District certified roll, tax year 2026, data as of July 20, 2026',v:'https://www.dallascad.org/SearchAddr.aspx',vn:'DCAD property search'},'fl/broward':FL('Broward','https://web.bcpa.net/BcpaClient/','Broward County Property Appraiser search'),'fl/dade':FL('Miami-Dade','https://apps.miamidadepa.gov/PropertySearch/','Miami-Dade Property Appraiser search'),'fl/hillsborough':FL('Hillsborough','https://gis.hcpafl.org/propertysearch/','Hillsborough County Property Appraiser search'),'fl/orange':FL('Orange','https://ocpaweb.ocpafl.org/parcelsearch','Orange County Property Appraiser search')};
 const sel=document.getElementById('county');const cc=()=>CT[sel.value];const D=()=>'/data/'+sel.value+'/';const cache={};
 sel.addEventListener('change',()=>{res.innerHTML='';sug.hidden=true;if(q.value)suggest()});
+async function getShard(d,code){const m=await get(d+'manifest.json');const b=m.shard_buckets;let x=5381;for(const c of code)x=(Math.imul(x,33)+c.charCodeAt(0))>>>0;const f=await get(d+'n/'+(x%b)+'.json');return f[code]||[]}
 const get=async u=>cache[u]||(cache[u]=fetch(u).then(r=>{if(!r.ok)throw 0;return r.json()}));
 const norm=s=>s.toUpperCase().replace(/[^A-Z0-9 ]/g,'').replace(/\s+/g,' ').trim();
 const $=n=>'$'+Math.round(n).toLocaleString('en-US');
@@ -112,7 +113,7 @@ function runFL(r,sh,me,C){
 async function run(r){
  window.__pk=null;
  res.innerHTML='<p class="mut">Comparing...</p>';
- const sh=await get(D()+'n/'+r[2].replace('/','_')+'.json');
+ const sh=await getShard(D(),r[2].replace('/','_'));
  const me=sh.find(x=>x[0]===r[3]);if(!me){res.innerHTML='<p>Record not found.</p>';return}
  let [acct,addr,sf,yr,land,qa,mkt,asd,prior]=me;
  const C=cc();if(C.st==='fl'){return runFL(r,sh,me,C)}

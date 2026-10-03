@@ -9,5 +9,6 @@
   "owner and fiduciary names and addresses (never read into output)",
   "non single-family classes",
   "unqualified or multi-parcel sales"
- ]
+ ],
+ "shard_buckets": 32
 }
