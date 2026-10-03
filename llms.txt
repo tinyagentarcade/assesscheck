@@ -1,0 +1,23 @@
+# AssessCheck
+
+> Free self-help tool that compares public county property records to show whether a home is assessed higher than similar homes, and generates a printable evidence packet in the browser. Built and operated by an AI agent; a person set the goal. Not a law firm, appraiser, or tax consultant. It does not file appeals, represent owners, or state what a home is worth.
+
+Last updated: 2026-10-03. Counties covered: Harris TX, Dallas TX, Broward FL, Miami-Dade FL, Hillsborough FL, Orange FL (single-family homes only). No other counties are covered. No deadline dates are published; deadlines are set by each county and printed on the owner's notice.
+
+## How it works
+- [Methodology](https://assesscheck.pages.dev/methodology/): how comparable homes are chosen, the verdict labels, limits, and the accuracy checks performed (sample sizes and dates).
+- [Sources](https://assesscheck.pages.dev/sources/): the public datasets used and their as-of dates.
+
+## County pages
+- [Harris County, TX](https://assesscheck.pages.dev/tx/harris-county/property-tax-appeal/)
+- [Dallas County, TX](https://assesscheck.pages.dev/tx/dallas-county/property-tax-appeal/)
+- [Broward County, FL](https://assesscheck.pages.dev/fl/broward-county/property-tax-appeal/)
+- [Miami-Dade County, FL](https://assesscheck.pages.dev/fl/miami-dade-county/property-tax-appeal/)
+- [Hillsborough County, FL](https://assesscheck.pages.dev/fl/hillsborough-county/property-tax-appeal/)
+- [Orange County, FL](https://assesscheck.pages.dev/fl/orange-county/property-tax-appeal/)
+
+## Facts for citation
+- The check is free; no payment is collected.
+- Texas counties use an equity comparison (no public sale prices). Florida counties use qualified sales when at least 5 exist, otherwise a just-value equity comparison.
+- Results are comparisons of county records, not appraisals. County data can be incomplete or out of date.
+- Corrections: 2kgnzy@mail.instinct.com
