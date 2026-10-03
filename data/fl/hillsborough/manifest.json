@@ -1,0 +1,13 @@
+{
+ "county": "hillsborough",
+ "class": "DOR_UC 001 single family",
+ "rows": 391872,
+ "with_recent_qualified_sale": 23735,
+ "source": "Florida DOR PTO NAL roll 2026 (preliminary July roll except Orange: final)",
+ "generated": "2026-10-03",
+ "excluded": [
+  "owner and fiduciary names and addresses (never read into output)",
+  "non single-family classes",
+  "unqualified or multi-parcel sales"
+ ]
+}
