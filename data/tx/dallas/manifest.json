@@ -1,0 +1,15 @@
+{
+ "county": "Dallas County, TX (Dallas CAD)",
+ "state_class": "A11 single-family residence",
+ "rows": 506485,
+ "data_as_of": "2026-07-20 (certified roll)",
+ "tax_year": 2026,
+ "source": "Dallas Central Appraisal District certified data products, https://www.dallascad.org/dataproducts.aspx",
+ "generated": "2026-10-03",
+ "excluded": [
+  "owner names (never read into output)",
+  "accounts flagged EXCLUDE_OWNER",
+  "non A11 classes",
+  "accounts without a street number"
+ ]
+}

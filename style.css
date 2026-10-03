@@ -17,3 +17,4 @@ tr.me td{font-weight:700;background:#eef5f3}.note{background:var(--warn);border-
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}.stat b{display:block;font-size:20px}
 button{background:var(--acc);color:#fff;border:0;border-radius:10px;padding:12px 18px;font-size:16px;cursor:pointer}button[disabled]{background:#9bb;cursor:default}
 @media(max-width:520px){h1{font-size:25px}th,td{font-size:12.5px;padding:6px 3px}}
+select{font-size:16px;padding:8px;border:2px solid var(--line);border-radius:8px;background:#fff}
