@@ -1,0 +1,15 @@
+{
+ "county": "Harris County, TX",
+ "state_class": "A1 (single-family residential)",
+ "rows": 1146720,
+ "data_as_of": "2026-09-27",
+ "tax_year": 2026,
+ "source": "Harris Central Appraisal District PDATA bulk files (real_acct.txt, building_res.txt), https://hcad.org/hcad-online-services/pdata/",
+ "generated": "2026-10-03",
+ "excluded": [
+  "owner names (never read into output)",
+  "parcels with all values pending",
+  "non A1 classes",
+  "accounts without a street address"
+ ]
+}

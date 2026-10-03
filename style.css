@@ -1,0 +1,19 @@
+:root{--ink:#1b2a3a;--mut:#5b6b7b;--acc:#0f6b5c;--bg:#f6f8f7;--card:#fff;--line:#dde4e1;--warn:#fff7e0}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header,main,footer{max-width:760px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+header a.b{font-weight:700;font-size:20px;color:var(--acc);text-decoration:none}nav a{margin-left:14px;color:var(--mut);text-decoration:none;font-size:14px}
+h1{font-size:30px;line-height:1.2;margin:.4em 0}h2{font-size:21px;margin-top:1.6em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:16px 0}
+input[type=text]{width:100%;padding:14px;font-size:17px;border:2px solid var(--line);border-radius:10px}
+input:focus{outline:none;border-color:var(--acc)}
+#sug{list-style:none;margin:4px 0 0;padding:0;border:1px solid var(--line);border-radius:10px;background:#fff;max-height:280px;overflow:auto}
+#sug li{padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--line)}#sug li:hover{background:#eef5f3}#sug small{color:var(--mut)}
+.verdict{border-left:6px solid var(--acc);padding:12px 16px;font-size:20px;font-weight:650;background:#eef5f3;border-radius:8px}
+.verdict.high{border-color:#b4472b;background:#fbeee9}.verdict.nd{border-color:#8a8f94;background:#f0f1f2}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right}th:first-child,td:first-child{text-align:left}
+tr.me td{font-weight:700;background:#eef5f3}.note{background:var(--warn);border-radius:8px;padding:10px 14px;font-size:14px}
+.mut{color:var(--mut);font-size:14px}footer{color:var(--mut);font-size:13px;border-top:1px solid var(--line);margin-top:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}.stat b{display:block;font-size:20px}
+button{background:var(--acc);color:#fff;border:0;border-radius:10px;padding:12px 18px;font-size:16px;cursor:pointer}button[disabled]{background:#9bb;cursor:default}
+@media(max-width:520px){h1{font-size:25px}th,td{font-size:12.5px;padding:6px 3px}}
