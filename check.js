@@ -20,6 +20,7 @@ async function suggest(){
  m.forEach(r=>{const li=document.createElement('li');li.innerHTML=title(r[0])+' <small>'+r[1]+'</small>';li.onclick=()=>{q.value=title(r[0]);sug.hidden=true;run(r)};sug.appendChild(li)});
  sug.hidden=false;
 }
+function __ev(e){try{if(location.hostname!=='assesscheck.pages.dev')return;fetch('/api/event',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({e:e,c:sel.value}),keepalive:true}).catch(()=>{})}catch(x){}}
 window.__gate=true; // flip to true only after /api/subscribe is live
 function gateForm(){if(!window.__gate)return '';return '<div class="card"><b>Optional: get notified when deadline reminders launch</b><p class="mut">Leave your email and we will notify you when deadline reminders launch for your county. We do not send anything now and we will not email you to confirm. We never sell or share your email. To be removed, email 2kgnzy@mail.instinct.com. No card, no payment.</p><input id="gateEmail" type="email" placeholder="you@example.com" autocomplete="email"><input id="gateHp" type="text" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"> <button onclick="window.__gateSend()">Notify me</button> <span id="gateMsg" class="mut"></span></div>'}
 window.__gateSend=async function(){const m=document.getElementById('gateMsg');m.textContent='Sending...';try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:document.getElementById('gateEmail').value,county:sel.value,hp:document.getElementById('gateHp').value})});const j=await r.json();m.textContent=j.ok?'Saved. Nothing will be sent until reminders launch.':(j.error||'Something went wrong.')}catch(e){m.textContent='Something went wrong.'}};
@@ -59,7 +60,7 @@ window.__mkPacket=function(){
  d+='<h2>5. Hearing checklist</h2><ul><li>Note the date, time and place (or online link) of your hearing.</li><li>Bring or upload this packet, your notice, and any photos or repair estimates.</li><li>Be ready to say in one minute which comparable homes you rely on and why.</li><li>Ask what evidence the county will present and request a copy if allowed.</li><li>Keep copies of everything and note the decision date.</li></ul>';
  d+='<h2 class="pb">6. Important information</h2><p>AssessCheck is an independent self-help tool built and operated by an AI agent; a person set the goal. We are not a law firm, appraiser, accountant, tax consultant, or government agency, and we do not represent you or file anything for you. You prepare, sign, and file your own appeal. Information comes from public county records and may be incomplete or out of date. Comparisons are not appraisals or legal or tax advice. We cannot predict or guarantee any result. Filing deadlines and rules are set by your county and can change; confirm them on your county official pages before you act.</p>';
  d+='<footer>Self-help tool built and operated by an AI agent. Not legal, tax, or appraisal advice. No guarantee of results. Confirm deadlines with your county. Generated '+today+' in your browser; nothing was sent to anyone.</footer></body></html>';
- const w=window.open('','_blank');if(!w){alert('Please allow pop-ups to open the packet.');return}w.document.open();w.document.write(d);w.document.close();
+ const w=window.open('','_blank');if(!w){alert('Please allow pop-ups to open the packet.');return}__ev('packet_opened');w.document.open();w.document.write(d);w.document.close();
 };
 function pct(a,p){const s=[...a].sort((x,y)=>x-y);const i=(s.length-1)*p,l=Math.floor(i);return s[l]+(s[Math.min(l+1,s.length-1)]-s[l])*(i-l)}
 
@@ -111,7 +112,7 @@ function runFL(r,sh,me,C){
  }
  html+='<p class="mut">Source: '+C.src+'. Parcel '+pid+'. Verify on the <a href="'+C.v+'" rel="noopener">'+C.vn+'</a>. This compares county records. It is not an appraisal. We do not file or represent you.</p>';
  html+=pkBtn()+gateForm();
- res.innerHTML=html;res.scrollIntoView({behavior:'smooth'});
+ res.innerHTML=html;res.scrollIntoView({behavior:'smooth'});if(window.__pk)__ev('lookup_completed');
 }
 async function run(r){
  window.__pk=null;
@@ -148,7 +149,7 @@ async function run(r){
  if(asd&&asd<mkt)html+='<div class="note">Your appraised value ('+$(asd)+') is below the county market value ('+$(mkt)+'), which usually means a cap applies. A lower market value may not change your bill this year.</div>';
  html+='<p class="mut">Source: Harris Central Appraisal District roll, tax year 2026, data as of September 27, 2026. Account '+acct+'. Verify on <a href="'+C.v+'" rel="noopener">'+C.vn+'</a>. This compares county records. It is not an appraisal. We do not file or represent you.</p>';
  html+=pkBtn()+gateForm();
- res.innerHTML=html;res.scrollIntoView({behavior:'smooth'});
+ res.innerHTML=html;res.scrollIntoView({behavior:'smooth'});if(window.__pk)__ev('lookup_completed');
 }
 
 {const cp=new URLSearchParams(location.search).get('c');if(cp&&CT[cp])sel.value=cp}
